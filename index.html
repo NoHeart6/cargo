@@ -278,19 +278,25 @@
             #customer-count, #shipment-count {
                 font-size: 2em;
             }
-            .swiper-container {
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
             .swiper-slide {
-                width: 100% !important;
-                height: auto !important;
+                width: 250px;
+                height: 250px;
             }
-            .project-card {
-                margin: 0 10px;
+            .navbar {
+                padding: 10px 0;
             }
-            .project-card img {
-                height: auto;
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            .navbar-nav {
+                margin-top: 10px;
+            }
+            .nav-item {
+                width: 100%;
+            }
+            .nav-link.btn {
+                width: 100%;
+                margin-top: 10px;
             }
         }
     </style>
@@ -471,17 +477,13 @@
             breakpoints: {
                 320: {
                     slidesPerView: 1,
-                    spaceBetween: 10
-                },
-                480: {
-                    slidesPerView: 1,
                     spaceBetween: 20
                 },
-                640: {
+                480: {
                     slidesPerView: 2,
                     spaceBetween: 30
                 },
-                768: {
+                640: {
                     slidesPerView: 3,
                     spaceBetween: 40
                 }
