@@ -314,31 +314,204 @@
         }
         @media (max-width: 768px) {
             .profile-img {
-                width: 150px;
-                height: 150px;
+                width: 120px;
+                height: 120px;
             }
             #customer-count, #shipment-count {
-                font-size: 2em;
+                font-size: 1.8em;
             }
             .swiper-slide {
-                width: 250px;
-                height: 250px;
+                width: 100%;
+                height: auto;
             }
             .navbar {
-                padding: 10px 0;
+                padding: 5px 0;
             }
             .navbar-brand {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             .navbar-nav {
-                margin-top: 10px;
+                margin-top: 5px;
             }
             .nav-item {
                 width: 100%;
             }
             .nav-link.btn {
                 width: 100%;
+                margin-top: 5px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .card {
+                margin-bottom: 15px;
+            }
+            .testimonial-card {
+                padding: 15px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Improved animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Improved responsiveness for mobile */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-text {
+                font-size: 0.9rem;
+            }
+
+            #customer-count, #shipment-count {
+                font-size: 1.5em;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .navbar {
+                padding: 5px 0;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .navbar-toggler {
+                padding: 0.25rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .navbar-nav {
                 margin-top: 10px;
+            }
+
+            .nav-item {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .nav-link.btn {
+                width: 100%;
+                margin-top: 5px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+
+            .testimonial-card {
+                padding: 15px;
+            }
+
+            .testimonial-text {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-author {
+                font-size: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .swiper-slide {
+                width: 250px;
+                height: 250px;
+            }
+
+            .project-card img {
+                height: 150px;
+            }
+
+            .video-container {
+                height: 200px;
+            }
+        }
+
+        /* Even smaller screens */
+        @media (max-width: 480px) {
+            .profile-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            #customer-count, #shipment-count {
+                font-size: 1.3em;
+            }
+
+            .swiper-slide {
+                width: 200px;
+                height: 200px;
+            }
+
+            .project-card img {
+                height: 120px;
+            }
+
+            .video-container {
+                height: 180px;
             }
         }
     </style>
@@ -519,13 +692,17 @@
             breakpoints: {
                 320: {
                     slidesPerView: 1,
-                    spaceBetween: 20
+                    spaceBetween: 10
                 },
                 480: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                640: {
                     slidesPerView: 2,
                     spaceBetween: 30
                 },
-                640: {
+                768: {
                     slidesPerView: 3,
                     spaceBetween: 40
                 }
@@ -769,6 +946,44 @@
                     card.style.opacity = '0';
                 }
             });
+        });
+
+        // Improved animations
+        function handleIntersection(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(handleIntersection, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Adjust layout on orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                swiper.update();
+                AOS.refresh();
+            }, 300);
         });
     </script>
 </body>
