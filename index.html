@@ -13,73 +13,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         body {
-            background-color: #ffffff;
+            background-color: #f8f9fa;
             color: #333333;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
         }
 
-        .background-animation {
+        .aurora-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none;
-            transition: opacity 1s ease;
+            background: linear-gradient(45deg, #16213e, #0f3460, #533483);
+            background-size: 400% 400%;
+            animation: aurora 15s ease infinite;
         }
 
-        .weather-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .rain {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M10,0 L8,25" stroke="%23000" stroke-width="1" fill="none" /><path d="M20,0 L18,25" stroke="%23000" stroke-width="1" fill="none" /><path d="M30,0 L28,25" stroke="%23000" stroke-width="1" fill="none" /><path d="M40,0 L38,25" stroke="%23000" stroke-width="1" fill="none" /></svg>');
-            animation: rain 0.5s linear infinite;
-        }
-
-        .cloudy {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,30 Q50,10 70,30 T100,30 T130,30 Q150,50 130,70 H30 Q10,50 30,30" fill="%23CCC" /></svg>');
-            animation: clouds 20s linear infinite;
-        }
-
-        .snow {
-            background-image: radial-gradient(#fff 1px, transparent 1px);
-            background-size: 10px 10px;
-            animation: snow 5s linear infinite;
-        }
-
-        .storm {
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: storm 1s infinite;
-        }
-
-        @keyframes rain {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 50px; }
-        }
-
-        @keyframes clouds {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 0; }
-        }
-
-        @keyframes snow {
-            0% { background-position: 0 0; }
-            100% { background-position: 10px 50px; }
-        }
-
-        @keyframes storm {
-            0% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0.5; }
+        @keyframes aurora {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .navbar {
@@ -146,51 +107,6 @@
             }
             .card {
                 margin-bottom: 20px;
-            }
-        }
-
-        .butterfly {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFA441"><path d="M12.75 14.33C15.38 14.33 16.9 13.4 17.65 12.05C18.42 10.67 18.67 8.84 18.67 7.21C18.67 4.86 17.47 3 16.04 3C14.61 3 13.4 4.86 13.4 7.21C13.4 8.84 13.65 10.67 14.42 12.05C14.91 13 15.78 13.67 16.94 13.96C16.73 14.05 16.5 14.12 16.24 14.17C15.57 14.29 14.75 14.33 13.81 14.33H12.75M11.25 14.33C8.62 14.33 7.1 13.4 6.35 12.05C5.58 10.67 5.33 8.84 5.33 7.21C5.33 4.86 6.53 3 7.96 3C9.39 3 10.6 4.86 10.6 7.21C10.6 8.84 10.35 10.67 9.58 12.05C9.09 13 8.22 13.67 7.06 13.96C7.27 14.05 7.5 14.12 7.76 14.17C8.43 14.29 9.25 14.33 10.19 14.33H11.25M12 15C9.37 15 5.09 15.86 3.25 18.1C2.25 19.28 2 20.73 2 21.75V22H22V21.75C22 20.73 21.75 19.28 20.75 18.1C18.91 15.86 14.62 15 12 15Z" /></svg>') no-repeat center center;
-            background-size: contain;
-            opacity: 0.7;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        .aurora-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #16213e, #0f3460, #533483);
-            background-size: 400% 400%;
-            animation: aurora 15s ease infinite;
-        }
-
-        @keyframes aurora {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
             }
         }
 
@@ -428,12 +344,7 @@
     </style>
 </head>
 <body>
-    <div class="background-animation">
-        <div class="weather-effect rain"></div>
-        <div class="weather-effect cloudy"></div>
-        <div class="weather-effect snow"></div>
-        <div class="weather-effect storm"></div>
-    </div>
+    <div class="aurora-background"></div>
 
     <div class="loading-overlay">
         <div class="loading-animation"></div>
@@ -822,6 +733,43 @@
             webkitRequestAnimationFrame || msRequestAnimationFrame;
         if (raf) raf(() => { window.setTimeout(loadDeferredStyles, 0); });
         else window.addEventListener('load', loadDeferredStyles);
+
+        // Aurora background animation
+        const auroraBackground = document.querySelector('.aurora-background');
+        let hue = 0;
+
+        function animateAurora() {
+            hue = (hue + 1) % 360;
+            const color1 = `hsl(${hue}, 50%, 20%)`;
+            const color2 = `hsl(${(hue + 60) % 360}, 50%, 30%)`;
+            const color3 = `hsl(${(hue + 120) % 360}, 50%, 40%)`;
+            
+            auroraBackground.style.background = `
+                linear-gradient(45deg, ${color1}, ${color2}, ${color3})
+            `;
+            auroraBackground.style.backgroundSize = '400% 400%';
+            
+            requestAnimationFrame(animateAurora);
+        }
+
+        animateAurora();
+
+        // Parallax effect for cards
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const scrollPosition = window.innerHeight / 1.3;
+                
+                if (cardTop < scrollPosition) {
+                    card.style.transform = 'translateY(0)';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.transform = 'translateY(50px)';
+                    card.style.opacity = '0';
+                }
+            });
+        });
     </script>
 </body>
 </html>
