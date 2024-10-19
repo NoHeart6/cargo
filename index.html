@@ -278,9 +278,19 @@
             #customer-count, #shipment-count {
                 font-size: 2em;
             }
+            .swiper-container {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
             .swiper-slide {
-                width: 250px;
-                height: 250px;
+                width: 100% !important;
+                height: auto !important;
+            }
+            .project-card {
+                margin: 0 10px;
+            }
+            .project-card img {
+                height: auto;
             }
         }
     </style>
@@ -461,13 +471,17 @@
             breakpoints: {
                 320: {
                     slidesPerView: 1,
-                    spaceBetween: 20
+                    spaceBetween: 10
                 },
                 480: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                640: {
                     slidesPerView: 2,
                     spaceBetween: 30
                 },
-                640: {
+                768: {
                     slidesPerView: 3,
                     spaceBetween: 40
                 }
